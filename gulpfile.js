@@ -62,3 +62,5 @@ gulp.task('start', function() {
 });
 
 gulp.task('default', ['start', 'build', 'copy']);
+
+gulp.task('heroku:production', ['build', 'copy']);
