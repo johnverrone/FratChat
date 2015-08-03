@@ -19,13 +19,13 @@ var ChatWindow = React.createClass({
     _initialize: function(data) {
         var users = data.users;
         var name = data.name;
-        this.setState({users, user: name});
+        this.setState({users: users, user: name});
     },
 
     _messageRecieve: function(message) {
         var messages = this.state.messages;
         messages.push(message);
-        this.setState({messages});
+        this.setState({messages: messages});
     },
 
     _userJoined: function(data) {
@@ -37,7 +37,7 @@ var ChatWindow = React.createClass({
             user: 'FRATCHAT BOT',
             text: name + ' Joined.'
         });
-        this.setState({users, messages});
+        this.setState({users: users, messages: messages});
     },
 
     _userLeft: function(data) {
@@ -49,13 +49,13 @@ var ChatWindow = React.createClass({
             user: 'FRATCHAT BOT',
             text: name + ' Left.'
         });
-        this.setState({users, messages});
+        this.setState({users: users, messages: messages});
     },
 
     handleMessageSubmit: function(message) {
         var messages = this.state.messages;
         messages.push(message);
-        this.setState({messages});
+        this.setState({messages: messages});
         socket.emit('send:message', message);
     },
 

@@ -19847,13 +19847,13 @@ var ChatWindow = React.createClass({displayName: "ChatWindow",
     _initialize: function(data) {
         var users = data.users;
         var name = data.name;
-        this.setState({users, user: name});
+        this.setState({users: users, user: name});
     },
 
     _messageRecieve: function(message) {
         var messages = this.state.messages;
         messages.push(message);
-        this.setState({messages});
+        this.setState({messages: messages});
     },
 
     _userJoined: function(data) {
@@ -19865,7 +19865,7 @@ var ChatWindow = React.createClass({displayName: "ChatWindow",
             user: 'FRATCHAT BOT',
             text: name + ' Joined.'
         });
-        this.setState({users, messages});
+        this.setState({users: users, messages: messages});
     },
 
     _userLeft: function(data) {
@@ -19877,13 +19877,13 @@ var ChatWindow = React.createClass({displayName: "ChatWindow",
             user: 'FRATCHAT BOT',
             text: name + ' Left.'
         });
-        this.setState({users, messages});
+        this.setState({users: users, messages: messages});
     },
 
     handleMessageSubmit: function(message) {
         var messages = this.state.messages;
         messages.push(message);
-        this.setState({messages});
+        this.setState({messages: messages});
         socket.emit('send:message', message);
     },
 
@@ -19969,7 +19969,7 @@ var MessageList = React.createClass({displayName: "MessageList",
             React.createElement("div", {className: "messages"}, 
                 React.createElement("h2", null, "Conversation:"), 
                 
-                    this.props.messages.map((message, i) => {
+                    this.props.messages.map(function(message, i) {
                         return (
                             React.createElement(Message, {key: i, user: message.user, text: message.text})
                         );
@@ -19992,7 +19992,7 @@ var UsersList = React.createClass({displayName: "UsersList",
                 React.createElement("h2", null, "Users:"), 
                 React.createElement("ul", null, 
                     
-                        this.props.users.map((user, i) => {
+                        this.props.users.map(function(user, i) {
                             return (
                                 React.createElement("li", {key: i}, 
                                     user

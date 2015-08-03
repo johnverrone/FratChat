@@ -7,7 +7,7 @@ var UsersList = React.createClass({
                 <h2>Users:</h2>
                 <ul>
                     {
-                        this.props.users.map((user, i) => {
+                        this.props.users.map(function(user, i) {
                             return (
                                 <li key={i}>
                                     {user}
